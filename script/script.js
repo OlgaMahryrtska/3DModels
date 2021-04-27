@@ -78,6 +78,11 @@ window.addEventListener("DOMContentLoaded", () => {
       clearInterval(timer);
       return;
     }
+    if (window.screen.width < 768) {
+      clearTimeout(timer);
+      return false;
+    }
+
     animate(timePassed);
   }, 3000);
   const animate = () => {
@@ -87,5 +92,4 @@ window.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "inline";
     popup.style.top = timePassed + "px";
   };
-  console.dir(animate);
 });
