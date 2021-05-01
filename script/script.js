@@ -142,7 +142,6 @@ window.addEventListener("DOMContentLoaded", () => {
       btn = document.querySelectorAll(".portfolio-btn"),
       slider = document.querySelector(".portfolio-content"),
       dots = document.querySelector(".portfolio-dots");
-    console.log(slide.length);
 
     const addDots = () => {
       for (let i = 0; i < slide.length; i++) {
@@ -228,4 +227,60 @@ window.addEventListener("DOMContentLoaded", () => {
     startSlide(1500);
   };
   slider();
+
+  // calculator
+  const checkCalcNums = () => {
+    let calcSquare = document.querySelector(".calc-square"),
+      calcCount = document.querySelector(".calc-count"),
+      calcDay = document.querySelector(".calc-day");
+    calcSquare.setAttribute("type", "number");
+    calcCount.setAttribute("type", "number");
+    calcDay.setAttribute("type", "number");
+    console.log(calcSquare.hasAttribute("type"));
+  };
+  checkCalcNums();
+  //comand picture
+  const changePhoto = () => {
+    let attr;
+    let images = document.querySelectorAll(".command__photo");
+    images.forEach((elem) => {
+      elem.addEventListener("mouseenter", (event) => {
+        attr = elem.getAttribute("src");
+
+        event.target.src = event.target.dataset.img;
+      });
+      elem.addEventListener("mouseleave", (event) => {
+        event.target.src = attr;
+      });
+    });
+  };
+  changePhoto();
+
+  // to check inputs in field 'Connect'
+  const forbideLatine = () => {
+    let formName = document.getElementById("form2-name"),
+      formMessage = document.getElementById("form2-message"),
+      formMail = document.getElementById("form2-email"),
+      formPhone = document.getElementById("form2-phone");
+
+    formName.addEventListener("input", () => {
+      formName.value = formName.value.replace(/[a-z]/gi, "");
+    });
+    formName.addEventListener("blur", () => {
+      let input = formName.value;
+      input = input.trim();
+      formName.value = input[0].toUpperCase() + input.slice(1);
+    });
+    formMessage.addEventListener("input", () => {
+      formMessage.value = formMessage.value.replace(/[a-z]/gi, "");
+    });
+    formMail.addEventListener("input", () => {
+      formMail.value = formMail.value.replace(/[а-я]/gi, "");
+    });
+    formPhone.addEventListener("input", () => {
+      formPhone.value = formPhone.value.replace(/[^0-9\-()]/g, "");
+    });
+  };
+
+  forbideLatine();
 });
