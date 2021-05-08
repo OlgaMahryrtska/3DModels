@@ -340,30 +340,26 @@ window.addEventListener("DOMContentLoaded", () => {
           body[val[0]] = val[1];
         }
         postData(body)
-          .then(() => {
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error("status network not 200");
+            }
+
             statusMessage.textContent = successMessage;
           })
-          .catch(() => {
+          .catch((error) => {
             statusMessage.textContent = errorMessage;
+            console.error(error);
           });
       });
     }
     const postData = (body) => {
-      const request = new XMLHttpRequest();
-      return new Promise((resolve, reject) => {
-        request.addEventListener("readystatechange", () => {
-          if (request.readyState !== 4) {
-            return;
-          }
-          if (request.status === 200) {
-            resolve();
-          } else {
-            reject(request.statusText);
-          }
-        });
-        request.open("POST", "./server.php");
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(body));
+      return fetch("./server.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       });
     };
   };
