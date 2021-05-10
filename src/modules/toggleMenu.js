@@ -10,6 +10,7 @@ const toggleMenu = () => {
 
   menuItems.forEach((elem) =>
     elem.addEventListener("click", (event) => {
+      event.preventDefault();
       let target = event.target;
       console.log(target);
       if (target.classList.contains("close-btn")) {

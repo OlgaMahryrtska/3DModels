@@ -22,8 +22,12 @@ const sendForm = () => {
           if (response.status !== 200) {
             throw new Error("status network not 200");
           }
-
           statusMessage.textContent = successMessage;
+          const closePopup = setTimeout(function () {
+            let popup = document.querySelector(".popup");
+            popup.style.display = "none";
+            item.removeChild(statusMessage);
+          }, 2000);
         })
         .catch((error) => {
           statusMessage.textContent = errorMessage;
@@ -41,4 +45,5 @@ const sendForm = () => {
     });
   };
 };
+
 export default sendForm;

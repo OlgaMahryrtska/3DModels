@@ -4,6 +4,7 @@ const timer = setTimeout(function () {
   let start = Date.now();
 
   timePassed = Date.now() - start;
+  console.log(timePassed);
   if (timePassed >= 6000) {
     clearInterval(timer);
     return;
@@ -12,8 +13,8 @@ const timer = setTimeout(function () {
     clearTimeout(timer);
     return false;
   }
-  animate(timePassed);
-}, 3000);
+  animate();
+}, 8000);
 const animate = () => {
   timePassed++;
   const popup = document.querySelector(".popup");
