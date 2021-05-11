@@ -1,24 +1,16 @@
-let timePassed;
-
-const timer = setTimeout(function () {
-  let start = Date.now();
-
-  timePassed = Date.now() - start;
-  console.log(timePassed);
-  if (timePassed >= 6000) {
-    clearInterval(timer);
-    return;
-  }
-  if (window.screen.width < 768) {
-    clearTimeout(timer);
-    return false;
-  }
-  animate();
-}, 8000);
 const animate = () => {
-  timePassed++;
   const popup = document.querySelector(".popup");
-  popup.style.display = "block";
+  let pos = 0;
+  let id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++;
+      popup.style.top = pos + "px";
+      popup.style.left = pos + "px";
+    }
+  }
 };
 
 export default animate;
