@@ -12,7 +12,7 @@ import toggleMenu from "./modules/toggleMenu";
 import togglePopUp from "./modules/togglePopup";
 import forbideLatine from "./modules/forbideLatine";
 
-countTimer("12 may 2021");
+countTimer("10 may 2021");
 // menu
 
 toggleMenu();
